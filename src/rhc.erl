@@ -735,7 +735,7 @@ client_id(#rhc{options=RhcOptions}, Options) ->
 %% @spec random_client_id() -> client_id()
 random_client_id() ->
     {{Y,Mo,D},{H,Mi,S}} = erlang:universaltime(),
-    {_,_,NowPart} = now(),
+    {_,_,NowPart} = erlang:timestamp(),
     Id = erlang:phash2([Y,Mo,D,H,Mi,S,node(),NowPart]),
     base64:encode_to_string(<<Id:32>>).
 
